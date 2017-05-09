@@ -10,17 +10,31 @@ html {
     width: 100%;
     font-size: 1.5em;
 
-    #countdown-container {
-        padding-top: 30px;
+    #aphex-console {
+        position: absolute;
+
+        top: 50%;
+        left: 0;
+        width: 50%;
+        height: 300px;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+
         margin-left: 5%;
-        margin-top: 13%;
+        max-width: 50%;
+
+        overflow: hidden;
     }
 
-    .aphex-gif {
-        float: right;
+    #aphex-gif-container {
         position: absolute;
+        float: right;
         top: 50%;
         right: 0;
+        width: 50%;
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -28,10 +42,15 @@ html {
         transform: translateY(-50%);
 
         padding-top: 50px;
+        text-align: center;
+
+        img {
+
+        }
     }
 
     .aphexDotPadding {
         display: inline;
-        letter-spacing: -5px;
+        //letter-spacing: -5px;
     }
 }

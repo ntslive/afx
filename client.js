@@ -1,8 +1,9 @@
 class TextScramble {
-    constructor(el) {
+    constructor(el, Countdown) {
         this.el = el;
         // this.chars = '!<>-_\\/[]{}—=+*^?#________';
-        this.chars = '!<>-_\\/[]{}—=+*^?#___20173';
+        // this.chars = '!<>-_\\/[]{}—=+*^?#___20173';
+        this.chars = 'aphextwin';
         this.update = this.update.bind(this)
     }
 
@@ -57,9 +58,59 @@ class TextScramble {
     }
 }
 
+function padWithDots(str) {
+    // let maxPaddingString = phrases.reduce( function(a, b) {
+    //     return a.length > b.length ? a : b;
+    // });
+
+    let maxPadding = 50;
+    let numToAdd = maxPadding - str.length;
+
+    let dots = '';
+    for (let i=0; i < numToAdd; i++) {
+        dots = dots + ".";
+    }
+
+    return str + dots;
+}
+
+class Countdown {
+    constructor() {
+        let that = this;
+        let a = new Date().valueOf();
+        let b = 1499119200000;
+
+        this.$el = $('#countdown');
+        this.updateField = true;
+        this.c = b - a;
+
+        setInterval(function() {
+            that.c--;
+
+            if (this.updateField) {
+                this.$el.text(padWithDots(that.c));
+            }
+        }, 100);
+    }
+}
+
 function initScramblers() {
     // const labelScrambler = new TextScramble(document.getElementById('aphex-label'));
+    window.countdowner = new Countdown();
+
     const ntsScrambler = new TextScramble(document.getElementById('nts-label'));
+    // const countdownScrambler = new TextScramble(document.getElementById('countdown'));
+
+    $('#nts-label').text(padWithDots("NTS"));
+
+    let $paddingElements = $('.aphexDotPadding');
+    let paddingScramblers = [];
+    $paddingElements.each( function(i) {
+        let $el = $($paddingElements[i]);
+        $el.length && $el.text( padWithDots(""));
+
+        paddingScramblers.push( new TextScramble($paddingElements[i]));
+    });
 
     let scramblerFrequency = 2000;
     let phrases = [
@@ -67,29 +118,24 @@ function initScramblers() {
         "INCOMING",
     ];
 
-    function padWithDots(str) {
-        let maxPaddingString = phrases.reduce( function(a, b) {
-            return a.length > b.length ? a : b;
-        });
-
-        let numToAdd = maxPaddingString.length - str.length;
-
-        let dots = '';
-        for (let i=0; i < numToAdd; i++) {
-            dots = dots + ".";
-        }
-
-        return str + dots;
-    }
-
     let selectedIndex = 0;
     let scrambleText = function() {
         selectedIndex === 0
             ? selectedIndex++
             : selectedIndex--;
-
         // labelScrambler.setText( padWithDots(phrases[selectedIndex]));
-        ntsScrambler.setText("NTS");
+
+        ntsScrambler.setText( padWithDots("NTS"));
+
+        for(let i =0; i < paddingScramblers.length; i++) {
+            paddingScramblers[i].setText(padWithDots(""));
+        }
+
+        // $('#countdown').text(padWithDots(window.countdowner.c + ""));
+        // countdownScrambler.setText( padWithDots(window.countdowner.c + "") );
+
+        // scramble countdown
+
     };
     scrambleText();
     setInterval( scrambleText, scramblerFrequency);
@@ -103,9 +149,9 @@ function aphexCountdown() {
 
     let c = b - a;
 
-    $countdown.text(c);
+    // $countdown.text(padWithDots(c + ""));
     setInterval(function() {
-        $countdown.text(c--);
+        // $countdown.text(padWithDots(c-- + ""));
     }, 100);
 }
 
