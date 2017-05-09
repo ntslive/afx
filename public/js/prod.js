@@ -1,24 +1,8 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function aphexCountdown() {
-    var $countdown = $('#countdown');
-
-    var now = moment();
-    var then = "03/06/2017 18:00:00";
-
-    var differenceInMilliseconds = moment(then, "DD/MM/YYYY HH:mm:ss").diff(moment(now, "DD/MM/YYYY HH:mm:ss"));
-
-    var duration = moment.duration(differenceInMilliseconds);
-
-    $countdown.text(duration--);
-    setInterval(function () {
-        $countdown.text(duration--);
-    }, 100);
-}
 
 var TextScramble = function () {
     function TextScramble(el) {
@@ -31,7 +15,7 @@ var TextScramble = function () {
     }
 
     _createClass(TextScramble, [{
-        key: "setText",
+        key: 'setText',
         value: function setText(newText) {
             var oldText = this.el.innerText;
             var length = Math.max(oldText.length, newText.length);
@@ -51,7 +35,7 @@ var TextScramble = function () {
             this.update();
         }
     }, {
-        key: "update",
+        key: 'update',
         value: function update() {
             var output = '';
             var complete = 0;
@@ -71,7 +55,7 @@ var TextScramble = function () {
                         char = this.randomChar();
                         this.queue[i].char = char;
                     }
-                    output += "<span class=\"dud\">" + char + "</span>";
+                    output += '<span class="dud">' + char + '</span>';
                 } else {
                     output += from;
                 }
@@ -85,7 +69,7 @@ var TextScramble = function () {
             }
         }
     }, {
-        key: "randomChar",
+        key: 'randomChar',
         value: function randomChar() {
             return this.chars[Math.floor(Math.random() * this.chars.length)];
         }
@@ -95,7 +79,7 @@ var TextScramble = function () {
 }();
 
 function initScramblers() {
-    var labelScrambler = new TextScramble(document.getElementById('aphex-label'));
+    // const labelScrambler = new TextScramble(document.getElementById('aphex-label'));
     var ntsScrambler = new TextScramble(document.getElementById('nts-label'));
 
     var scramblerFrequency = 2000;
@@ -120,14 +104,28 @@ function initScramblers() {
     var scrambleText = function scrambleText() {
         selectedIndex === 0 ? selectedIndex++ : selectedIndex--;
 
-        labelScrambler.setText(padWithDots(phrases[selectedIndex]));
+        // labelScrambler.setText( padWithDots(phrases[selectedIndex]));
         ntsScrambler.setText("NTS");
     };
     scrambleText();
     setInterval(scrambleText, scramblerFrequency);
 }
 
-$(document).on('ready', function () {
+function aphexCountdown() {
+    var $countdown = $('#countdown');
+
+    var a = new Date().valueOf();
+    var b = 1499119200000;
+
+    var c = b - a;
+
+    $countdown.text(c);
+    setInterval(function () {
+        $countdown.text(c--);
+    }, 100);
+}
+
+$(document).ready(function () {
     aphexCountdown();
     initScramblers();
 
@@ -137,7 +135,5 @@ $(document).on('ready', function () {
     };
     flashIbeam();
     setInterval(flashIbeam, 500);
-
-    console.log('read');
 });
 //# sourceMappingURL=prod.js.map

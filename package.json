@@ -1,24 +1,21 @@
 {
-  "name": "god-colony",
+  "name": "afx",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ntslive/god-colony.git"
+    "url": "git+https://github.com/ntslive/afx.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ntslive/god-colony/issues"
+    "url": "https://github.com/ntslive/afx/issues"
   },
-  "homepage": "https://github.com/ntslive/god-colony#readme",
-  "dependencies": {
-    "express": "^4.14.0"
-  },
+  "homepage": "https://github.com/ntslive/afx#readme",
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "grunt": "^1.0.1",
