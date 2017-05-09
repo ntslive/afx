@@ -6,7 +6,7 @@ html {
 #aphex-page {
   color: white;
   width: 100%;
-  font-size: 1.5em; }
+  font-size: 1.6em; }
   #aphex-page #aphex-console {
     position: absolute;
     top: 50%;
@@ -20,7 +20,8 @@ html {
     transform: translateY(-50%);
     margin-left: 5%;
     max-width: 50%;
-    overflow: hidden; }
+    overflow: hidden;
+    letter-spacing: -3px; }
   #aphex-page #aphex-gif-container {
     position: absolute;
     float: right;
@@ -34,7 +35,17 @@ html {
     transform: translateY(-50%);
     padding-top: 50px;
     text-align: center; }
+    #aphex-page #aphex-gif-container img {
+      width: 600px; }
   #aphex-page .aphexDotPadding {
     display: inline; }
+
+#nts-link {
+  transition: opacity 0.2s linear; }
+  #nts-link:hover {
+    opacity: 0.7; }
+  #nts-link img {
+    width: 40px;
+    margin-bottom: 20px; }
 
 /*# sourceMappingURL=style.css.map */

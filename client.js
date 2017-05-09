@@ -66,7 +66,7 @@ function padWithDots(str) {
     //     return a.length > b.length ? a : b;
     // });
 
-    let maxPadding = 50;
+    let maxPadding = 60;
     let numToAdd = maxPadding - str.length;
 
     let dots = '';
@@ -119,29 +119,39 @@ function initScramblers() {
         paddingScramblers.push( new TextScramble($paddingElements[i], 25, 'twin'));
     });
 
-    let scramblerFrequency = 2000;
     let phrases = [
         "APHEX TWIN",
         "INCOMING",
     ];
 
     let selectedIndex = 0;
+
     let scrambleText = function() {
+        /*
         selectedIndex === 0
             ? selectedIndex++
             : selectedIndex--;
-        // labelScrambler.setText( padWithDots(phrases[selectedIndex]));
+        labelScrambler.setText( padWithDots(phrases[selectedIndex]));
+        */
 
-        ntsScrambler.setText( padWithDots("NTS"));
+        // ntsScrambler.setText( padWithDots("NTS"));
+        ntsScrambler.setText( padWithDots(""));
 
         for(let i =0; i < paddingScramblers.length; i++) {
             paddingScramblers[i].setText(padWithDots(""));
         }
 
         countdownScrambler.setText( padWithDots(window.countdowner.c + "") );
+
+        let rangeInSeconds = 4.5;
+        let randomTimeout = Math.floor( (Math.random() * 1000) * rangeInSeconds);
+
+        setTimeout(scrambleText, randomTimeout)
     };
+
+
+
     scrambleText();
-    setInterval( scrambleText, scramblerFrequency);
 }
 
 $(document).ready( function () {
@@ -154,5 +164,6 @@ $(document).ready( function () {
             : ibeam.text('|');
     };
     flashIbeam();
+
     setInterval( flashIbeam, 500);
 });

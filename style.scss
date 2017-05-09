@@ -8,7 +8,7 @@ html {
 #aphex-page {
     color: white;
     width: 100%;
-    font-size: 1.5em;
+    font-size: 1.6em;
 
     #aphex-console {
         position: absolute;
@@ -27,6 +27,8 @@ html {
         max-width: 50%;
 
         overflow: hidden;
+
+        letter-spacing: -3px;
     }
 
     #aphex-gif-container {
@@ -45,12 +47,28 @@ html {
         text-align: center;
 
         img {
-
+            width: 600px;
         }
     }
 
     .aphexDotPadding {
         display: inline;
         //letter-spacing: -5px;
+    }
+}
+
+#nts-link {
+    //position: fixed;
+    //top: 5px;
+    //left: 5px;
+
+    transition: opacity 0.2s linear;
+
+    &:hover {
+        opacity: 0.7;
+    }
+    img {
+        width: 40px;
+        margin-bottom: 20px;
     }
 }

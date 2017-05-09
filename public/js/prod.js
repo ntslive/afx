@@ -87,7 +87,7 @@ function padWithDots(str) {
     //     return a.length > b.length ? a : b;
     // });
 
-    var maxPadding = 50;
+    var maxPadding = 60;
     var numToAdd = maxPadding - str.length;
 
     var dots = '';
@@ -147,24 +147,34 @@ function initScramblers() {
         paddingScramblers.push(new TextScramble($paddingElements[i], 25, 'twin'));
     });
 
-    var scramblerFrequency = 2000;
     var phrases = ["APHEX TWIN", "INCOMING"];
 
     var selectedIndex = 0;
-    var scrambleText = function scrambleText() {
-        selectedIndex === 0 ? selectedIndex++ : selectedIndex--;
-        // labelScrambler.setText( padWithDots(phrases[selectedIndex]));
 
-        ntsScrambler.setText(padWithDots("NTS"));
+    var scrambleText = function scrambleText() {
+        /*
+        selectedIndex === 0
+            ? selectedIndex++
+            : selectedIndex--;
+        labelScrambler.setText( padWithDots(phrases[selectedIndex]));
+        */
+
+        // ntsScrambler.setText( padWithDots("NTS"));
+        ntsScrambler.setText(padWithDots(""));
 
         for (var i = 0; i < paddingScramblers.length; i++) {
             paddingScramblers[i].setText(padWithDots(""));
         }
 
         countdownScrambler.setText(padWithDots(window.countdowner.c + ""));
+
+        var rangeInSeconds = 4.5;
+        var randomTimeout = Math.floor(Math.random() * 1000 * rangeInSeconds);
+
+        setTimeout(scrambleText, randomTimeout);
     };
+
     scrambleText();
-    setInterval(scrambleText, scramblerFrequency);
 }
 
 $(document).ready(function () {
@@ -175,6 +185,7 @@ $(document).ready(function () {
         ibeam.text().length ? ibeam.text('') : ibeam.text('|');
     };
     flashIbeam();
+
     setInterval(flashIbeam, 500);
 });
 //# sourceMappingURL=prod.js.map
