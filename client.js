@@ -8,7 +8,7 @@ function aphexCountdown() {
     let differenceInMilliseconds = moment(then,"DD/MM/YYYY HH:mm:ss")
         .diff( moment(now,"DD/MM/YYYY HH:mm:ss") );
 
-    let duration = moment.duration( Math.sqrt(differenceInMilliseconds)) ;
+    let duration = moment.duration(differenceInMilliseconds) ;
 
     $countdown.text(duration);
     setInterval(function() {
