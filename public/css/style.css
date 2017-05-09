@@ -1,0 +1,219 @@
+@import url(fontello.css);
+@font-face {
+  font-family: 'Decima';
+  src: url("fonts/decimamonopro-webfont.woff2") format("woff2"), url("fonts/decimamonopro-webfont.woff") format("woff"), url("fonts/DecimaMonoPro.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal; }
+html {
+  background-color: black;
+  color: white;
+  font-family: "Decima", courier;
+  min-width: 320px; }
+
+* {
+  box-sizing: border-box; }
+
+input[type="search"]::-webkit-search-decoration {
+  display: none; }
+
+input {
+  margin: 0;
+  outline: 0;
+  vertical-align: middle;
+  background: none;
+  border: none;
+  color: white;
+  font-family: "Decima", courier !important;
+  font-size: 1em; }
+
+input[type="reset"], input[type="submit"], input[type="button"] {
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  overflow: visible;
+  padding: 0;
+  width: auto;
+  font-family: "Decima", courier; }
+
+a {
+  text-decoration: none;
+  transition: opacity 0.2s linear; }
+  a:hover {
+    opacity: 0.7; }
+  a:visited {
+    color: white; }
+  a:-webkit-any-link {
+    color: white; }
+
+#aphex-page {
+  color: white;
+  width: 100%;
+  font-size: 19.5px; }
+
+#aphex-console-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 50%;
+  height: auto;
+  padding: 0 20px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  max-width: 50%;
+  overflow: hidden; }
+
+#links-bottom {
+  margin-top: 20px; }
+  #links-bottom #warp-link {
+    float: left; }
+    #links-bottom #warp-link img {
+      height: 35px; }
+  #links-bottom #nts-link {
+    float: left;
+    margin-right: 10px; }
+    #links-bottom #nts-link img {
+      width: 35px; }
+
+#links-top, #console, #console-entry-form, #links-bottom > div {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto; }
+
+#console .console-row {
+  display: inline-block; }
+#console .aphexDotPadding {
+  display: inline; }
+#console #console-entry-form {
+  width: 500px; }
+  #console #console-entry-form #console-entry {
+    width: 100%; }
+
+#aphex-gif-container {
+  position: absolute;
+  float: right;
+  top: 50%;
+  right: 0;
+  width: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center; }
+  #aphex-gif-container img {
+    max-width: 80%; }
+
+#error-message, #success-message {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 6em;
+  font-weight: lighter;
+  z-index: 99999;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
+  #error-message.display, #success-message.display {
+    visibility: visible;
+    opacity: 1; }
+
+#error-message {
+  color: #be0000;
+  text-shadow: 0 0 40px #ab0505; }
+
+#success-message {
+  color: #00d200;
+  text-shadow: 0 0 30px green;
+  overflow: hidden; }
+
+audio {
+  display: none; }
+
+#player {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2em;
+  cursor: pointer;
+  color: white;
+  opacity: 1;
+  z-index: 9999999999;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -ms-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear; }
+  #player:hover {
+    opacity: 0.7;
+    cursor: pointer; }
+  #player.playing #player-play {
+    display: none; }
+  #player.playing #player-pause {
+    display: block; }
+
+#player-pause {
+  display: none; }
+
+@media only screen and (max-width: 700px) {
+  #aphex-page {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    font-size: 1.2em;
+    height: 450px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%); }
+
+  #aphex-console-container {
+    position: relative;
+    display: block;
+    width: 300px;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    top: 0;
+    overflow: hidden;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none; }
+    #aphex-console-container #nts-link img {
+      width: 30px; }
+
+  #aphex-gif-container {
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: auto;
+    top: 0;
+    padding-top: 0;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none; }
+    #aphex-gif-container img {
+      width: 250px; } }
+
+/*# sourceMappingURL=style.css.map */
