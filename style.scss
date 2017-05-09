@@ -1,0 +1,32 @@
+
+#aphex-page {
+    color: white;
+    width: 100%;
+
+    #countdown-container {
+        padding-top: 30px;
+        font-size: 2em;
+        margin-left: 5%;
+        margin-top: 13%;
+
+        font-family: courier;
+    }
+
+    .aphex-gif {
+        float: right;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+
+        padding-top: 50px;
+    }
+
+    .aphexDotPadding {
+        display: inline;
+    }
+}
