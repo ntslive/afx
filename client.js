@@ -1,21 +1,3 @@
-
-function aphexCountdown() {
-    let $countdown = $('#countdown');
-
-    let now = moment();
-    let then = "03/06/2017 18:00:00";
-
-    let differenceInMilliseconds = moment(then,"DD/MM/YYYY HH:mm:ss")
-        .diff( moment(now,"DD/MM/YYYY HH:mm:ss") );
-
-    let duration = moment.duration(differenceInMilliseconds) ;
-
-    $countdown.text(duration);
-    setInterval(function() {
-        $countdown.text(duration--);
-    }, 100);
-}
-
 class TextScramble {
     constructor(el) {
         this.el = el;
@@ -111,6 +93,20 @@ function initScramblers() {
     };
     scrambleText();
     setInterval( scrambleText, scramblerFrequency);
+}
+
+function aphexCountdown() {
+    let $countdown = $('#countdown');
+
+    let a = new Date().valueOf();
+    let b = 1499119200000;
+
+    let c = b - a;
+
+    $countdown.text(c);
+    setInterval(function() {
+        $countdown.text(c--);
+    }, 100);
 }
 
 $(document).ready( function () {
