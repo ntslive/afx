@@ -1,12 +1,16 @@
+html {
+  background-color: black;
+  color: white;
+  font-family: courier; }
+
 #aphex-page {
   color: white;
-  width: 100%; }
+  width: 100%;
+  font-size: 1.5em; }
   #aphex-page #countdown-container {
     padding-top: 30px;
-    font-size: 2em;
     margin-left: 5%;
-    margin-top: 13%;
-    font-family: courier; }
+    margin-top: 13%; }
   #aphex-page .aphex-gif {
     float: right;
     position: absolute;
@@ -19,6 +23,7 @@
     transform: translateY(-50%);
     padding-top: 50px; }
   #aphex-page .aphexDotPadding {
-    display: inline; }
+    display: inline;
+    letter-spacing: -5px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -14,11 +14,9 @@ function aphexCountdown() {
 
     var duration = moment.duration(differenceInMilliseconds);
 
-    var i = 0;
-
-    $countdown.text(differenceInMilliseconds);
+    $countdown.text(duration--);
     setInterval(function () {
-        $countdown.text(differenceInMilliseconds--);
+        $countdown.text(duration--);
     }, 100);
 }
 
@@ -28,7 +26,7 @@ var TextScramble = function () {
 
         this.el = el;
         // this.chars = '!<>-_\\/[]{}—=+*^?#________';
-        this.chars = '!<>-_\\/[]{}—=+*^?#___201';
+        this.chars = '!<>-_\\/[]{}—=+*^?#___20173';
         this.update = this.update.bind(this);
     }
 
@@ -139,5 +137,7 @@ $(document).on('ready', function () {
     };
     flashIbeam();
     setInterval(flashIbeam, 500);
+
+    console.log('read');
 });
 //# sourceMappingURL=prod.js.map

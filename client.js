@@ -8,13 +8,11 @@ function aphexCountdown() {
     let differenceInMilliseconds = moment(then,"DD/MM/YYYY HH:mm:ss")
         .diff( moment(now,"DD/MM/YYYY HH:mm:ss") );
 
-    let duration = moment.duration(differenceInMilliseconds);
+    let duration = moment.duration( Math.sqrt(differenceInMilliseconds)) ;
 
-    let i = 0;
-
-    $countdown.text(differenceInMilliseconds);
+    $countdown.text(duration);
     setInterval(function() {
-        $countdown.text(differenceInMilliseconds--);
+        $countdown.text(duration--);
     }, 100);
 }
 
@@ -22,7 +20,7 @@ class TextScramble {
     constructor(el) {
         this.el = el;
         // this.chars = '!<>-_\\/[]{}—=+*^?#________';
-        this.chars = '!<>-_\\/[]{}—=+*^?#___201';
+        this.chars = '!<>-_\\/[]{}—=+*^?#___20173';
         this.update = this.update.bind(this)
     }
 
@@ -78,7 +76,7 @@ class TextScramble {
 }
 
 function initScramblers() {
-    const labelScrambler = new TextScramble(document.getElementById('aphex-label'));
+    // const labelScrambler = new TextScramble(document.getElementById('aphex-label'));
     const ntsScrambler = new TextScramble(document.getElementById('nts-label'));
 
     let scramblerFrequency = 2000;
@@ -108,14 +106,14 @@ function initScramblers() {
             ? selectedIndex++
             : selectedIndex--;
 
-        labelScrambler.setText( padWithDots(phrases[selectedIndex]));
+        // labelScrambler.setText( padWithDots(phrases[selectedIndex]));
         ntsScrambler.setText("NTS");
     };
     scrambleText();
     setInterval( scrambleText, scramblerFrequency);
 }
 
-$(document).on('ready', function () {
+$(document).ready( function () {
     aphexCountdown();
     initScramblers();
 
