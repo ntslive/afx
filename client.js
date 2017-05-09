@@ -1,13 +1,15 @@
 class TextScramble {
-    constructor(el, Countdown) {
+    constructor(el, scrambleSpeed, chars) {
         this.el = el;
         // this.chars = '!<>-_\\/[]{}—=+*^?#________';
         // this.chars = '!<>-_\\/[]{}—=+*^?#___20173';
-        this.chars = 'aphextwin';
+        this.scrambleSpeed = scrambleSpeed || 25;
+        this.chars = chars || 'aphextwin';
         this.update = this.update.bind(this)
     }
 
     setText(newText) {
+        window.countdowner.updateField = false;
         const oldText = this.el.innerText;
         const length = Math.max(oldText.length, newText.length);
         this.queue = [];
@@ -16,8 +18,8 @@ class TextScramble {
             const from = oldText[i] || '';
             const to = newText[i] || '';
 
-            const start = Math.floor(Math.random() * 40);
-            const end = start + Math.floor(Math.random() * 40);
+            const start = Math.floor(Math.random() * (this.scrambleSpeed));
+            const end = start + Math.floor(Math.random() * (this.scrambleSpeed));
 
             this.queue.push({ from, to, start, end })
         }
@@ -46,6 +48,7 @@ class TextScramble {
         }
         this.el.innerHTML = output;
         if (complete === this.queue.length) {
+            window.countdowner.updateField = true;
             return;
         } else {
             this.frameRequest = requestAnimationFrame(this.update);
@@ -84,22 +87,26 @@ class Countdown {
         this.updateField = true;
         this.c = b - a;
 
+        this._setText();
         setInterval(function() {
             that.c--;
-
-            if (this.updateField) {
-                this.$el.text(padWithDots(that.c));
-            }
+            that._setText();
         }, 100);
+    }
+
+    _setText() {
+        if (this.updateField) {
+            this.$el.text( padWithDots(this.c + "") );
+        }
     }
 }
 
 function initScramblers() {
-    // const labelScrambler = new TextScramble(document.getElementById('aphex-label'));
     window.countdowner = new Countdown();
 
-    const ntsScrambler = new TextScramble(document.getElementById('nts-label'));
-    // const countdownScrambler = new TextScramble(document.getElementById('countdown'));
+    // const labelScrambler = new TextScramble(document.getElementById('aphex-label'));
+    const ntsScrambler = new TextScramble(document.getElementById('nts-label'), 35, 'aphex');
+    const countdownScrambler = new TextScramble(document.getElementById('countdown'), 15, 'aphex');
 
     $('#nts-label').text(padWithDots("NTS"));
 
@@ -109,7 +116,7 @@ function initScramblers() {
         let $el = $($paddingElements[i]);
         $el.length && $el.text( padWithDots(""));
 
-        paddingScramblers.push( new TextScramble($paddingElements[i]));
+        paddingScramblers.push( new TextScramble($paddingElements[i], 25, 'twin'));
     });
 
     let scramblerFrequency = 2000;
@@ -131,32 +138,13 @@ function initScramblers() {
             paddingScramblers[i].setText(padWithDots(""));
         }
 
-        // $('#countdown').text(padWithDots(window.countdowner.c + ""));
-        // countdownScrambler.setText( padWithDots(window.countdowner.c + "") );
-
-        // scramble countdown
-
+        countdownScrambler.setText( padWithDots(window.countdowner.c + "") );
     };
     scrambleText();
     setInterval( scrambleText, scramblerFrequency);
 }
 
-function aphexCountdown() {
-    let $countdown = $('#countdown');
-
-    let a = new Date().valueOf();
-    let b = 1499119200000;
-
-    let c = b - a;
-
-    // $countdown.text(padWithDots(c + ""));
-    setInterval(function() {
-        // $countdown.text(padWithDots(c-- + ""));
-    }, 100);
-}
-
 $(document).ready( function () {
-    aphexCountdown();
     initScramblers();
 
     let ibeam = $('#flashing-beam');
