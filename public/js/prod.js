@@ -5,12 +5,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var TextScramble = function () {
-    function TextScramble(el) {
+    function TextScramble(el, Countdown) {
         _classCallCheck(this, TextScramble);
 
         this.el = el;
         // this.chars = '!<>-_\\/[]{}—=+*^?#________';
-        this.chars = '!<>-_\\/[]{}—=+*^?#___20173';
+        // this.chars = '!<>-_\\/[]{}—=+*^?#___20173';
+        this.chars = 'aphextwin';
         this.update = this.update.bind(this);
     }
 
@@ -78,34 +79,78 @@ var TextScramble = function () {
     return TextScramble;
 }();
 
+function padWithDots(str) {
+    // let maxPaddingString = phrases.reduce( function(a, b) {
+    //     return a.length > b.length ? a : b;
+    // });
+
+    var maxPadding = 50;
+    var numToAdd = maxPadding - str.length;
+
+    var dots = '';
+    for (var i = 0; i < numToAdd; i++) {
+        dots = dots + ".";
+    }
+
+    return str + dots;
+}
+
+var Countdown = function Countdown() {
+    _classCallCheck(this, Countdown);
+
+    var that = this;
+    var a = new Date().valueOf();
+    var b = 1499119200000;
+
+    this.$el = $('#countdown');
+    this.updateField = true;
+    this.c = b - a;
+
+    setInterval(function () {
+        that.c--;
+
+        if (this.updateField) {
+            this.$el.text(padWithDots(that.c));
+        }
+    }, 100);
+};
+
 function initScramblers() {
     // const labelScrambler = new TextScramble(document.getElementById('aphex-label'));
+    window.countdowner = new Countdown();
+
     var ntsScrambler = new TextScramble(document.getElementById('nts-label'));
+    // const countdownScrambler = new TextScramble(document.getElementById('countdown'));
+
+    $('#nts-label').text(padWithDots("NTS"));
+
+    var $paddingElements = $('.aphexDotPadding');
+    var paddingScramblers = [];
+    $paddingElements.each(function (i) {
+        var $el = $($paddingElements[i]);
+        $el.length && $el.text(padWithDots(""));
+
+        paddingScramblers.push(new TextScramble($paddingElements[i]));
+    });
 
     var scramblerFrequency = 2000;
     var phrases = ["APHEX TWIN", "INCOMING"];
 
-    function padWithDots(str) {
-        var maxPaddingString = phrases.reduce(function (a, b) {
-            return a.length > b.length ? a : b;
-        });
-
-        var numToAdd = maxPaddingString.length - str.length;
-
-        var dots = '';
-        for (var i = 0; i < numToAdd; i++) {
-            dots = dots + ".";
-        }
-
-        return str + dots;
-    }
-
     var selectedIndex = 0;
     var scrambleText = function scrambleText() {
         selectedIndex === 0 ? selectedIndex++ : selectedIndex--;
-
         // labelScrambler.setText( padWithDots(phrases[selectedIndex]));
-        ntsScrambler.setText("NTS");
+
+        ntsScrambler.setText(padWithDots("NTS"));
+
+        for (var i = 0; i < paddingScramblers.length; i++) {
+            paddingScramblers[i].setText(padWithDots(""));
+        }
+
+        // $('#countdown').text(padWithDots(window.countdowner.c + ""));
+        // countdownScrambler.setText( padWithDots(window.countdowner.c + "") );
+
+        // scramble countdown
     };
     scrambleText();
     setInterval(scrambleText, scramblerFrequency);
@@ -119,9 +164,9 @@ function aphexCountdown() {
 
     var c = b - a;
 
-    $countdown.text(c);
+    // $countdown.text(padWithDots(c + ""));
     setInterval(function () {
-        $countdown.text(c--);
+        // $countdown.text(padWithDots(c-- + ""));
     }, 100);
 }
 
