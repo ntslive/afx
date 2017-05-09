@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+grunt production
+git add public/.
