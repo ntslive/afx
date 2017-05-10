@@ -177,8 +177,31 @@ function initScramblers() {
     scrambleText();
 }
 
+var NTS_AFX = {};
+NTS_AFX.store = {};
+NTS_AFX.store.init = function () {
+    var config = {
+        apiKey: "AIzaSyCn2JexWTvW3fyvyvjWNcdwe-wDkgOw1c0",
+        authDomain: "nts-afx.firebaseapp.com",
+        databaseURL: "https://nts-afx.firebaseio.com",
+        projectId: "nts-afx",
+        storageBucket: "nts-afx.appspot.com",
+        messagingSenderId: "1740064170"
+    };
+    firebase.initializeApp(config);
+};
+
+NTS_AFX.store.post = function (message) {
+    var record = { message: message };
+    var newPostKey = firebase.database().ref().child('messages').push().key;
+    var updates = {};
+    updates['/messages/' + newPostKey] = record;
+    return firebase.database().ref().update(updates);
+};
+
 $(document).ready(function () {
     initScramblers();
+    NTS_AFX.store.init();
 
     var ibeam = $('#flashing-beam');
     var flashIbeam = function flashIbeam() {
