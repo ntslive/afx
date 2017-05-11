@@ -103,6 +103,7 @@ function initScramblers() {
     window.countdowner = new Countdown();
     const countdownScrambler = new TextScramble(document.getElementById('countdown'), 15, 'aphex');
     const dateScrambler = new TextScramble(document.getElementById('date-label') );
+    const locationScrambler = new TextScramble(document.getElementById('location-label'), 35, 'twin');
 
     $('#nts-label').text(padWithDots("NTS"));
 
@@ -116,11 +117,16 @@ function initScramblers() {
     });
 
     let $dateLabel = $('#date-label');
+    let $locationLabel = $('#location-label');
     if ($dateLabel.length > 0) {
         $dateLabel.text( padWithDots("SATURDAY.3RD.JUNE") );
     }
+    if ($locationLabel.length > 0) {
+        $locationLabel.text( padWithDots("VIDEO.STREAM.LIVE.FROM.FIELD.DAY") );
+    }
     let scrambleText = function() {
         ($dateLabel.length > 0) && dateScrambler.setText( padWithDots("SATURDAY.3RD.JUNE"));
+        ($locationLabel.length > 0) && locationScrambler.setText(padWithDots("VIDEO.STREAM.LIVE.FROM.FIELD.DAY"));
 
         for(let i=0; i < paddingScramblers.length; i++) {
             paddingScramblers[i].setText(padWithDots(""));
@@ -250,12 +256,15 @@ $(document).ready( function () {
     $('#nts-link').on('click', function() {
         ga('send', 'event', 'Aphex', 'GoTo-NTS');
     });
-
     $('#warp-link').on('click', function() {
         ga('send', 'event', 'Aphex', 'GoTo-Warp');
     });
 
     $('#player').on('click', function() {
         window.audioPlayer.toggleAudio();
+    });
+
+    $('#fieldday-link').on('click', function() {
+        ga('send', 'event', 'Aphex', 'GoTo-FieldDay');
     });
 });

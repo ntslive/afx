@@ -169,19 +169,33 @@ audio {
 #player-pause {
   display: none; }
 
+#links-bottom {
+  margin-top: 20px; }
+  #links-bottom #fieldday-link {
+    float: left;
+    margin-left: 10px;
+    margin-top: 8px; }
+    #links-bottom #fieldday-link img {
+      height: 20px; }
+  #links-bottom #warp-link {
+    float: left; }
+    #links-bottom #warp-link img {
+      height: 35px; }
+
 @media only screen and (max-width: 700px) {
   #aphex-page {
     position: absolute;
     top: 50%;
     left: 0;
     right: 0;
-    font-size: 1.2em;
     height: 450px;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-    transform: translateY(-50%); }
+    transform: translateY(-50%);
+    letter-spacing: -1px;
+    font-size: 1em; }
 
   #aphex-console-container {
     position: relative;
@@ -200,6 +214,10 @@ audio {
     transform: none; }
     #aphex-console-container #nts-link img {
       width: 30px; }
+    #aphex-console-container #warp-link img {
+      height: 30px; }
+    #aphex-console-container #fieldday-link {
+      margin-top: 5px; }
 
   #aphex-gif-container {
     position: relative;
