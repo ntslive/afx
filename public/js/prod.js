@@ -129,6 +129,7 @@ var Countdown = function () {
 function initScramblers() {
     window.countdowner = new Countdown();
     var countdownScrambler = new TextScramble(document.getElementById('countdown'), 15, 'aphex');
+    var dateScrambler = new TextScramble(document.getElementById('date-label'));
 
     $('#nts-label').text(padWithDots("NTS"));
 
@@ -141,7 +142,13 @@ function initScramblers() {
         paddingScramblers.push(new TextScramble($paddingElements[i], 25, i % 2 === 0 ? 'twin' : 'aphex'));
     });
 
+    var $dateLabel = $('#date-label');
+    if ($dateLabel.length > 0) {
+        $dateLabel.text(padWithDots("SATURDAY.3RD.JUNE"));
+    }
     var scrambleText = function scrambleText() {
+        $dateLabel.length > 0 && dateScrambler.setText(padWithDots("SATURDAY.3RD.JUNE"));
+
         for (var i = 0; i < paddingScramblers.length; i++) {
             paddingScramblers[i].setText(padWithDots(""));
         }

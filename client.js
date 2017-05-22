@@ -102,6 +102,7 @@ class Countdown {
 function initScramblers() {
     window.countdowner = new Countdown();
     const countdownScrambler = new TextScramble(document.getElementById('countdown'), 15, 'aphex');
+    const dateScrambler = new TextScramble(document.getElementById('date-label') );
 
     $('#nts-label').text(padWithDots("NTS"));
 
@@ -114,7 +115,13 @@ function initScramblers() {
         paddingScramblers.push( new TextScramble($paddingElements[i], 25, i % 2 === 0 ? 'twin' : 'aphex'));
     });
 
+    let $dateLabel = $('#date-label');
+    if ($dateLabel.length > 0) {
+        $dateLabel.text( padWithDots("SATURDAY.3RD.JUNE") );
+    }
     let scrambleText = function() {
+        ($dateLabel.length > 0) && dateScrambler.setText( padWithDots("SATURDAY.3RD.JUNE"));
+
         for(let i=0; i < paddingScramblers.length; i++) {
             paddingScramblers[i].setText(padWithDots(""));
         }
