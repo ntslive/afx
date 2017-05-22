@@ -68,15 +68,15 @@ a {
 
 #links-bottom {
   margin-top: 20px; }
-  #links-bottom #warp-link {
-    float: left; }
-    #links-bottom #warp-link img {
-      height: 35px; }
   #links-bottom #nts-link {
     float: left;
     margin-right: 10px; }
     #links-bottom #nts-link img {
       width: 35px; }
+  #links-bottom #warp-link {
+    float: left; }
+    #links-bottom #warp-link img {
+      height: 35px; }
 
 #links-top, #console, #console-entry-form, #links-bottom > div {
   max-width: 500px;
@@ -105,7 +105,7 @@ a {
   transform: translateY(-50%);
   text-align: center; }
   #aphex-gif-container img {
-    max-width: 80%; }
+    max-width: 65%; }
 
 #error-message, #success-message {
   position: absolute;

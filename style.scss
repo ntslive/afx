@@ -95,17 +95,17 @@ a {
 #links-bottom {
     margin-top: 20px;
 
-    #warp-link {
-        float: left;
-        img {
-            height: 35px;
-        }
-    }
     #nts-link {
         float: left;
         margin-right: 10px;
         img {
             width: 35px;
+        }
+    }
+    #warp-link {
+        float: left;
+        img {
+            height: 35px;
         }
     }
 }
@@ -149,7 +149,7 @@ a {
     text-align: center;
 
     img {
-        max-width: 80%;
+        max-width: 65%;
     }
 }
 
@@ -299,4 +299,3 @@ audio {
         }
     }
 }
-
