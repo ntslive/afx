@@ -12,5 +12,5 @@ cp pre-commit .git/hooks/.
 ## Development
 
 ```
-grunt developement
+grunt development
 ```
