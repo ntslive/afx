@@ -65,6 +65,22 @@ a {
     }
 }
 
+#queeny {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    opacity: 0.8;
+    z-index: -1;
+
+    background-image: url('http://www.nts.live/projects/aphex-twin/public/img/bg.jpg');
+    background-size: 100%;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+}
+
 #aphex-page {
     color: white;
     width: 100%;
@@ -325,5 +341,9 @@ audio {
         img {
             width: 250px;
         }
+    }
+
+    #queeny {
+        opacity: 0;
     }
 }
