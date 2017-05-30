@@ -46,6 +46,19 @@ a {
   a:-webkit-any-link {
     color: white; }
 
+#queeny {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.8;
+  z-index: -1;
+  background-image: url("http://www.nts.live/projects/aphex-twin/public/img/bg.jpg");
+  background-size: 100%;
+  background-position: bottom left;
+  background-repeat: no-repeat; }
+
 #aphex-page {
   color: white;
   width: 100%;
@@ -232,6 +245,9 @@ audio {
     -o-transform: none;
     transform: none; }
     #aphex-gif-container img {
-      width: 250px; } }
+      width: 250px; }
+
+  #queeny {
+    opacity: 0; } }
 
 /*# sourceMappingURL=style.css.map */
