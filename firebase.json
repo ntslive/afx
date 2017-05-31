@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "./",
+    "ignore": [
+      "firebase.json",
+      "client.js",
+      "style.scss",
+      "pre-commit",
+      "README.md",
+      "package.json",
+      "Gruntfile.js"
+    ],
+    "headers": [{
+      "source" : "**/*.@(js|html|css)",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "max-age=7200"
+      } ]
+    }]
+  }
+}
