@@ -33,3 +33,10 @@ Login to Firebase
 ```
 PATH=$(npm bin):$PATH firebase serve
 ```
+
+### Deploy
+
+```
+PATH=$(npm bin):$PATH firebase deploy
+```
+

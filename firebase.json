@@ -3,12 +3,14 @@
     "public": "./",
     "ignore": [
       "firebase.json",
-      "client.js",
       "style.scss",
       "pre-commit",
       "README.md",
       "package.json",
-      "Gruntfile.js"
+      "Gruntfile.js",
+      "public/audio",
+      "public/img",
+      "public/js"
     ],
     "headers": [{
       "source" : "**/*.@(js|html|css)",

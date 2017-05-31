@@ -5,7 +5,7 @@
   font-weight: normal;
   font-style: normal; }
 html {
-  background-color: black;
+  background-color: green;
   color: white;
   font-family: "Decima", courier;
   min-width: 320px; }
@@ -68,16 +68,14 @@ a {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 50%;
+  right: 0;
   height: auto;
   padding: 0 20px;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  max-width: 50%;
-  overflow: hidden; }
+  transform: translateY(-50%); }
 
 #links-bottom {
   margin-top: 20px; }

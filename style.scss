@@ -13,7 +13,7 @@ $row-width: 500px;
 }
 
 html {
-    background-color: black;
+    background-color: green;
     color: white;
 
     font-family: $font;
@@ -92,7 +92,8 @@ a {
 
     top: 50%;
     left: 0;
-    width: 50%;
+    right: 0;
+    //width: 50%;
     height: auto;
 
     padding: 0 20px;
@@ -102,10 +103,6 @@ a {
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
-
-    max-width: 50%;
-
-    overflow: hidden;
 }
 
 #links-bottom {

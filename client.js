@@ -5,7 +5,8 @@ class TextScramble {
     constructor(el, scrambleSpeed, chars) {
         this.el = el;
         this.scrambleSpeed = scrambleSpeed || 25;
-        this.chars = chars || 'aphextwin';
+        // this.chars = chars || 'aphextwin';
+        this.chars = 'aphextwin;}[*$|~';
         this.update = this.update.bind(this)
     }
 
@@ -62,8 +63,10 @@ class TextScramble {
     }
 }
 
+let maxLineLength = 40;
+
 function padWithDots(str) {
-    let maxPadding = 40;
+    let maxPadding = maxLineLength;
     let numToAdd = maxPadding - str.length;
 
     let dots = '';
@@ -75,37 +78,52 @@ function padWithDots(str) {
 }
 
 class Countdown {
-    constructor() {
+    constructor(passwords) {
         let that = this;
-        let a = new Date().valueOf();
-        let b = 1499119200000;
-        let d = 1496520000000;
 
         this.$el = $('#countdown');
         this.updateField = true;
-        this.c = b - a;
 
-        this._setText();
-        setInterval(function() {
-            that.c = Math.floor((that.c - (100 * ((b - a) / (d - a)) ) )) ;
+        let i = 0;
+
+        function changePasswordAttempt() {
+            that.c = passwords[i];
+            if (that.c.length > maxLineLength) {
+                that.c = that.c.substring(0, maxLineLength-1);
+            }
+            that.c = that.c.replace(/\s/g, ".");
+
             that._setText();
-        }, 100);
+
+            if (i === (passwords.length-1) ) {
+                i = 0;
+            } else {
+                i++;
+            }
+
+            setTimeout(changePasswordAttempt, that._generateRandomTimeout());
+        }
+
+        changePasswordAttempt();
+    }
+
+    _generateRandomTimeout() {
+        return Math.floor(Math.random() * 300) + 100;
     }
 
     _setText() {
         if (this.updateField) {
+            if (this.c.length > maxLineLength) {
+                this.c = this.c.substring(0, maxLineLength-1);
+            }
             this.$el.text( padWithDots(this.c + "") );
         }
     }
 }
 
-function initScramblers() {
-    window.countdowner = new Countdown();
-    const countdownScrambler = new TextScramble(document.getElementById('countdown'), 15, 'aphex');
-    const dateScrambler = new TextScramble(document.getElementById('date-label') );
-    const locationScrambler = new TextScramble(document.getElementById('location-label'), 35, 'twin');
-
-    $('#nts-label').text(padWithDots("NTS"));
+function initScramblers(passwords) {
+    window.countdowner = new Countdown(passwords);
+    const countdownScrambler = new TextScramble(document.getElementById('countdown'), 20, 'aphex');
 
     let $paddingElements = $('.aphexDotPadding');
     let paddingScramblers = [];
@@ -113,21 +131,10 @@ function initScramblers() {
         let $el = $($paddingElements[i]);
         $el.length && $el.text( padWithDots(""));
 
-        paddingScramblers.push( new TextScramble($paddingElements[i], 25, i % 2 === 0 ? 'twin' : 'aphex'));
+        paddingScramblers.push( new TextScramble($paddingElements[i], 20, i % 2 === 0 ? 'twin' : 'aphex'));
     });
 
-    let $dateLabel = $('#date-label');
-    let $locationLabel = $('#location-label');
-    if ($dateLabel.length > 0) {
-        $dateLabel.text( padWithDots("SATURDAY.3RD.JUNE") );
-    }
-    if ($locationLabel.length > 0) {
-        $locationLabel.text( padWithDots("VIDEO.STREAM.LIVE.FROM.FIELD.DAY") );
-    }
     let scrambleText = function() {
-        ($dateLabel.length > 0) && dateScrambler.setText( padWithDots("SATURDAY.3RD.JUNE"));
-        ($locationLabel.length > 0) && locationScrambler.setText(padWithDots("VIDEO.STREAM.LIVE.FROM.FIELD.DAY"));
-
         for(let i=0; i < paddingScramblers.length; i++) {
             paddingScramblers[i].setText(padWithDots(""));
         }
@@ -135,7 +142,7 @@ function initScramblers() {
         countdownScrambler.setText( padWithDots(window.countdowner.c + "") );
 
         let rangeInSeconds = 4.5;
-        let randomTimeout = Math.floor( (Math.random() * 1000) * rangeInSeconds);
+        let randomTimeout = Math.floor( (Math.random() * 600) * rangeInSeconds);
 
         setTimeout(scrambleText, randomTimeout)
     };
@@ -178,49 +185,13 @@ NTS_AFX.store = {
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-6061419-3', 'auto');
 
-class AudioPlayer {
-    constructor() {
-        this.el = document.getElementById('aphex-audio');
-
-        this.el.addEventListener('play', function(e) {
-            $('#player').addClass('playing');
-        });
-        this.el.addEventListener('pause', function(e) {
-            $('#player').removeClass('playing');
-        });
-
-        this.el.volume = 0.8;
-    }
-
-    play() {
-        this.el.play();
-    }
-
-    pause() {
-        this.el.pause();
-    }
-
-    isPlaying() {
-        return !this.el.paused;
-    }
-
-    toggleAudio() {
-        this.isPlaying()
-            ? this.pause()
-            : this.play();
-    }
-}
-
 $(document).ready( function () {
-    ga('send', 'pageview', window.location.pathname);
-
-    initScramblers();
+    $.getJSON("/public/json/passwords_day1_clean.json", function(data) {
+        initScramblers(data.passwords);
+    });
     NTS_AFX.store.init();
 
-    window.audioPlayer = new AudioPlayer();
-
     let $consoleEntryForm = $('#console-entry-form');
-
     $consoleEntryForm.focus();
     $consoleEntryForm.submit( function(e) {
         e.preventDefault();
@@ -251,20 +222,5 @@ $(document).ready( function () {
 
             e.currentTarget.children['console-entry'].value = "";
         });
-    });
-
-    $('#nts-link').on('click', function() {
-        ga('send', 'event', 'Aphex', 'GoTo-NTS');
-    });
-    $('#warp-link').on('click', function() {
-        ga('send', 'event', 'Aphex', 'GoTo-Warp');
-    });
-
-    $('#player').on('click', function() {
-        window.audioPlayer.toggleAudio();
-    });
-
-    $('#fieldday-link').on('click', function() {
-        ga('send', 'event', 'Aphex', 'GoTo-FieldDay');
     });
 });
