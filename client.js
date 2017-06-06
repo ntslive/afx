@@ -158,6 +158,7 @@ NTS_AFX.store = {
     },
     post: function(message) {
         let record = { message: message };
+        // Ensure Firebase Rules allow write
         let newPostKey = firebase.database().ref().child('messages').push().key;
         let updates = {};
         updates['/messages/' + newPostKey] = record;
@@ -215,7 +216,8 @@ $(document).ready( function () {
     ga('send', 'pageview', window.location.pathname);
 
     initScramblers();
-    NTS_AFX.store.init();
+    // Uncomment below to enable auth-store
+    // NTS_AFX.store.init();
 
     window.audioPlayer = new AudioPlayer();
 
@@ -227,9 +229,12 @@ $(document).ready( function () {
 
         ga('send', 'event', 'Aphex', 'PasswordAttempt');
 
-        let authenticated = NTS_AFX.store.post(
-            e.currentTarget.children['console-entry'].value
-        ).then(function(authenticated) {
+        // Uncomment below to enable auth-store
+        // let authenticated = NTS_AFX.store.post(
+        //     e.currentTarget.children['console-entry'].value
+        // ).then(function(authenticated) {
+        let authenticated = false;
+        // Remove above when enabling auth-store
 
             if (authenticated) {
                 let $msg = $('#success-message');
@@ -250,7 +255,8 @@ $(document).ready( function () {
             }
 
             e.currentTarget.children['console-entry'].value = "";
-        });
+        // Uncomment below to enable auth-store
+        // });
     });
 
     $('#nts-link').on('click', function() {
