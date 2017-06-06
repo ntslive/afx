@@ -185,6 +185,7 @@ NTS_AFX.store = {
     },
     post: function post(message) {
         var record = { message: message };
+        // Ensure Firebase Rules allow write
         var newPostKey = firebase.database().ref().child('messages').push().key;
         var updates = {};
         updates['/messages/' + newPostKey] = record;
@@ -249,7 +250,8 @@ $(document).ready(function () {
     ga('send', 'pageview', window.location.pathname);
 
     initScramblers();
-    NTS_AFX.store.init();
+    // Uncomment below to enable auth-store
+    // NTS_AFX.store.init();
 
     window.audioPlayer = new AudioPlayer();
 
@@ -261,28 +263,34 @@ $(document).ready(function () {
 
         ga('send', 'event', 'Aphex', 'PasswordAttempt');
 
-        var authenticated = NTS_AFX.store.post(e.currentTarget.children['console-entry'].value).then(function (authenticated) {
+        // Uncomment below to enable auth-store
+        // let authenticated = NTS_AFX.store.post(
+        //     e.currentTarget.children['console-entry'].value
+        // ).then(function(authenticated) {
+        var authenticated = false;
+        // Remove above when enabling auth-store
 
-            if (authenticated) {
-                var $msg = $('#success-message');
-                $msg.addClass('display');
+        if (authenticated) {
+            var $msg = $('#success-message');
+            $msg.addClass('display');
 
-                setTimeout(function () {
-                    $msg.removeClass('display');
-                }, 2000);
+            setTimeout(function () {
+                $msg.removeClass('display');
+            }, 2000);
 
-                authenticated.authenticate();
-            } else {
-                var _$msg = $('#error-message');
-                _$msg.addClass('display');
+            authenticated.authenticate();
+        } else {
+            var _$msg = $('#error-message');
+            _$msg.addClass('display');
 
-                setTimeout(function () {
-                    _$msg.removeClass('display');
-                }, 1500);
-            }
+            setTimeout(function () {
+                _$msg.removeClass('display');
+            }, 1500);
+        }
 
-            e.currentTarget.children['console-entry'].value = "";
-        });
+        e.currentTarget.children['console-entry'].value = "";
+        // Uncomment below to enable auth-store
+        // });
     });
 
     $('#nts-link').on('click', function () {
