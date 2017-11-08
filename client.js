@@ -77,9 +77,13 @@ function padWithDots(str) {
 class Countdown {
     constructor() {
         let that = this;
-        let a = new Date().valueOf();
-        let b = 1499119200000;
-        let d = 1496520000000;
+
+        let now = new Date();
+        let a = now.valueOf();
+        // let b = 1499119200000;
+        let b = new Date().setHours(now.getHours() + 96); // Used only for archive purposes
+        // let d = 1496520000000;
+        let d = new Date().setHours(now.getHours() + 168); // Used only for archive purposes
 
         this.$el = $('#countdown');
         this.updateField = true;

@@ -99,9 +99,13 @@ var Countdown = function () {
         _classCallCheck(this, Countdown);
 
         var that = this;
-        var a = new Date().valueOf();
-        var b = 1499119200000;
-        var d = 1496520000000;
+
+        var now = new Date();
+        var a = now.valueOf();
+        // let b = 1499119200000;
+        var b = new Date().setHours(now.getHours() + 96); // Used only for archive purposes
+        // let d = 1496520000000;
+        var d = new Date().setHours(now.getHours() + 168); // Used only for archive purposes
 
         this.$el = $('#countdown');
         this.updateField = true;
