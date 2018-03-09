@@ -304,6 +304,12 @@ audio {
             }
         }
     }
+
+    #stream-desc {
+      width: 80%;
+      margin: 0 auto;
+      clear: both;
+    }
 }
 #stream-fieldday-link {
     float: left;
@@ -394,7 +400,7 @@ audio {
         transform: translateY(-50%);
     }
 
-    #youtube-container, #stream-links {
+    #youtube-container, #stream-links, #stream-desc {
         width: 100% !important;
     }
 }

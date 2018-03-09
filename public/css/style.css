@@ -215,6 +215,10 @@ audio {
   margin: 0 auto; }
   #youtube-stream #stream-links .stream-nts-link img {
     height: 30px; }
+#youtube-stream #stream-desc {
+  width: 80%;
+  margin: 0 auto;
+  clear: both; }
 
 #stream-fieldday-link {
   float: left; }
@@ -285,7 +289,7 @@ audio {
     right: 10px;
     transform: translateY(-50%); }
 
-  #youtube-container, #stream-links {
+  #youtube-container, #stream-links, #stream-desc {
     width: 100% !important; } }
 
 /*# sourceMappingURL=style.css.map */
